@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { HeaderComponent } from '../header/header.component';
 
 interface ToDoItem{
   task: string;
@@ -9,14 +10,18 @@ interface ToDoItem{
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss'
 })
 
 //Defines the structure of a to-do item with task and completed properties.
 export class TodoListComponent {
-  tasks: ToDoItem[] = []; // an array to store the todo itemas
+  tasks: ToDoItem[] = [{task: 'learn Angular', completed: false},
+    {task: 'build a to do list', completed: true}
+  ]; // an array to store the todo itemas
+
+  
   newTask: string = ''; // A string to store the new task input 
 
   addTask() { //This adds a new task to the tasks array 
