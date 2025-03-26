@@ -1,13 +1,23 @@
 <app-header></app-header>
 <div>
-    <input type="text" [(ngModel)]="newTask" placeholder="Add new task" />
-    <button (click)="addTask()">Add</button>
+    <div class="input">
+      <input
+        type="text"
+        [(ngModel)]="newTask"
+        placeholder="New task"
+        (keydown.enter)="addTask()" />
+      <input
+        type="date"
+        [(ngModel)]="newDueDate" />
+      <button (click)="addTask()">Add</button>
+    </div>
   
-    <ul>
+<ul>
       <li *ngFor="let task of tasks; let i = index">
         <input type="checkbox" [checked]="task.completed" (change)="toggleTask(i)" />
-        <span [ngClass]="{'completed-task': task.completed}">{{ task.task }}</span>
+        <span>{{ task.task }}</span>
+        <span *ngIf="task.dueDate"> (Due: {{ task.dueDate | date: 'yyyy-MM-dd' }})</span>
         <button (click)="removeTask(i)">Remove</button>
       </li>
-    </ul>
+    </ul> 
   </div>
