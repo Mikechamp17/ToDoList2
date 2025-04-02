@@ -1,37 +1,51 @@
 <app-header></app-header>
-<button mat-raised-button class="btn" (click)="toggleTheme()">Toggle Theme</button> 
-<div>
-  <div class = "input">
-  <mat-form-field>
-   <mat-label>Task</mat-label>
+<button mat-raised-button class="btn" (click)="toggleTheme()">
+  Toggle Theme
+</button>
+<div class="wrapping-div">
+  <div class="input">
+    <mat-form-field>
+      <mat-label>Task</mat-label>
       <input
-        matInput type="text"
+        matInput
+        type="text"
         [(ngModel)]="newTask"
         placeholder="New task"
-        (keydown.enter)="addTask()" />
-    </mat-form-field> 
- <mat-form-field>
+        (keydown.enter)="addTask()"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
       <mat-label>Due date</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="newDueDate" /> 
+      <input matInput [matDatepicker]="picker" [(ngModel)]="newDueDate" />
       <mat-datepicker-toggle matSuffix [for]="picker">
-      <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="primary" class="btn" (click)="addTask()">Add</button>
   </div>
+  <div>
+    <button mat-raised-button color="primary" class="btn" (click)="addTask()">
+      Add
+    </button>
+  </div>
+</div>
 
-
+<div>
   <mat-list>
     <mat-list-item *ngFor="let task of tasks; let i = index">
-        <mat-checkbox [checked]="task.completed" (change)="toggleTask(i)" ></mat-checkbox>
-        <span>{{ task.task }}</span>
-        <span *ngIf="task.dueDate"> (Due: {{ task.dueDate | date: 'yyyy-MM-dd' }})</span>
-        <button mat-icon-button color= "warn" class="btn" (click)="removeTask(i)">
-          <mat-icon>delete</mat-icon>
-          </button>
+      <mat-checkbox
+        [checked]="task.completed"
+        (change)="toggleTask(i)"
+      ></mat-checkbox>
+      <span>{{ task.task }}</span>
+      <span *ngIf="task.dueDate">
+        (Due: {{ task.dueDate | date : "yyyy-MM-dd" }})</span
+      >
+      <button mat-icon-button color="warn" class="btn" (click)="removeTask(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-list-item>
-        </mat-list>
-  
-    
-  </div>
+  </mat-list>
+</div>
