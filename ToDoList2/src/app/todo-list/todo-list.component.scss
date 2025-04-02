@@ -1,5 +1,10 @@
 
-  
+  .wrapping-div{
+    display: flex;
+    align-items: center;
+    border: 2px, solid, rgb(186, 186, 186);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 input[type="text"] {
   flex: 1;
   padding: 10px;
@@ -22,9 +27,9 @@ input[type="date"] {
     width: 700px;
     margin: 20px auto;
     padding:20px;
-    border: 2px, solid, rgb(186, 186, 186);
+    // border: 2px, solid, rgb(186, 186, 186);
     border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
