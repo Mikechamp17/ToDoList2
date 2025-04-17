@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { HeaderComponent } from '../header/header.component';
+//import { HeaderComponent } from '../header/header.component';
 // Adding date picker
 
 import { MatInputModule } from '@angular/material/input';
@@ -11,12 +11,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TaskService } from '../task.service';
+import { ToDoItem } from './todo-item.interface';
 
-interface ToDoItem {
-  task: string;
-  completed: boolean;
-  dueDate?: Date | null | number;
-}
+
+
 
 @Component({
   selector: 'app-todo-list',
@@ -24,7 +23,6 @@ interface ToDoItem {
   imports: [
     CommonModule,
     FormsModule,
-    HeaderComponent,
     MatInputModule,
     MatButtonModule,
     MatListModule,
@@ -46,33 +44,33 @@ export class TodoListComponent implements OnInit {
   newTask: string = ''; // A string to store the new task input
   isDarkMode: boolean = false;
 
+  constructor(private taskService: TaskService) {}
+
   ngOnInit(): void {
     // localStorage.setItem('todo-tasks', `[{"task":"local storage item","completed":true,"dueDate":"2023-01-01"}]`);
     this.loadTask();
   }
 
   loadTask(): void {
-    const savedTasks = localStorage.getItem('todo-tasks');
-    if (savedTasks) {
-      this.tasks = JSON.parse(savedTasks);
-      if (this.tasks.length > 0) {
-        this.isEmpty = false;
-      }
-    }
-    if (this.isEmpty) {
-      this.tasks = [
-        {
-          task: 'Learn Angular',
-          completed: true,
-          dueDate: new Date('2025-03-28'),
-        },
-        {
-          task: 'Build a to-do list',
-          completed: false,
-          dueDate: new Date('2025-03-31'),
-        },
-      ];
-    }
+    // const savedTasks = localStorage.getItem('todo-tasks');
+  
+    // if (savedTasks) {
+    //   this.tasks = JSON.parse(savedTasks);
+    //   this.isEmpty = this.tasks.length === 0;
+    // }
+  
+    // if (!savedTasks || this.isEmpty) {
+      this.taskService.getInitialTasks()
+        .then((initialTasks) => {
+          console.log('our initias tasks are', initialTasks);
+          this.tasks = initialTasks;
+          this.isEmpty = initialTasks.length === 0;
+          this.savedTasks(); // optional: save it to localStorage
+        })
+        .catch((error) => {
+          console.error('Failed to load initial tasks:', error);
+        });
+    // }
   }
 
   addTask() {
@@ -114,4 +112,6 @@ export class TodoListComponent implements OnInit {
       document.body.classList.remove('dark-mode');
     }
   }
+
+
 }
