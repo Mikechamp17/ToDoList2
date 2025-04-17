@@ -1,0 +1,14 @@
+<div class="Calculator">
+    <h2>Mikes Calculator</h2>
+  <input [(ngModel)] = "num1" name="num1" type="number" placeholder= "Your first number">
+  <input [(ngModel)] = "num2" name="num2" type="number" placeholder= "Your second number">
+
+  <button (click)="addNumbers()">add</button>
+  <button (click)= "minusNumbers()">Minus</button>
+  <button (click)="divideNumbers()">Divide</button>
+  <button (click)="multiplyNumber()"> Multiply</button>
+  <button (click)="clear()">clear</button>
+
+ <p class="errorMessage">{{errorMessage}}</p>
+  <p class="result">Answer {{result}}</p>
+  </div>
