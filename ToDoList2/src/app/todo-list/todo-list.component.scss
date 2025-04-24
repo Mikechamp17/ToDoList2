@@ -1,10 +1,9 @@
-
-  .wrapping-div{
-    display: flex;
-    align-items: center;
-    border: 2px, solid, rgb(186, 186, 186);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.wrapping-div {
+  display: flex;
+  align-items: center;
+  border: 2px, solid, rgb(186, 186, 186);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 input[type="text"] {
   flex: 1;
   padding: 10px;
@@ -22,45 +21,42 @@ input[type="date"] {
   box-sizing: border-box;
 }
 
-
- div {
-    width: 700px;
-    margin: 20px auto;
-    padding:20px;
-    // border: 2px, solid, rgb(186, 186, 186);
-    border-radius: 5px;
+div {
+  width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  // border: 2px, solid, rgb(186, 186, 186);
+  border-radius: 5px;
   // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
- li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
 }
 
-
-
-.input{
+.input {
   display: flex;
   gap: 10px;
   align-items: center;
   width: 650px;
- }
-  
- 
-  
- 
-  
-  .completed-task {
-    text-decoration: line-through;
-    color: #888;
-  }
+}
 
-  //dark mode 
+.completed-task {
+  text-decoration: line-through;
+  color: #888;
+}
 
- /* Light Theme Variables */
+.Spinner {
+  display: flex;
+  justify-content: center;
+}
+
+//dark mode
+
+/* Light Theme Variables */
 :root {
   --bg-color: #f0f0f0;
   --text-color: #333;
@@ -79,3 +75,5 @@ input[type="date"] {
   --border-color: #555;
   --list-bg-color: #444;
 }
+
+

@@ -1,0 +1,28 @@
+.mat-drawer-container {
+    height: 100px;
+    
+}
+
+.mat-drawer {
+    margin-top: 10px;
+    width: 200px;
+}
+
+
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+/* You'll still need styles for the links/buttons if desired */
+.drawer1 button[mat-button],
+.drawer2 button[mat-button]
+ {
+  width: 100%; 
+  text-align: left; 
+ 
+}
+
+
