@@ -1,14 +1,39 @@
 <div class="Calculator">
-    <h2>Mikes Calculator</h2>
-  <input [(ngModel)] = "num1" name="num1" type="number" placeholder= "Your first number">
-  <input [(ngModel)] = "num2" name="num2" type="number" placeholder= "Your second number">
-
-  <button (click)="addNumbers()">add</button>
-  <button (click)= "minusNumbers()">Minus</button>
-  <button (click)="divideNumbers()">Divide</button>
-  <button (click)="multiplyNumber()"> Multiply</button>
-  <button (click)="clear()">clear</button>
-
- <p class="errorMessage">{{errorMessage}}</p>
-  <p class="result">Answer {{result}}</p>
+<div class="operator1">{{lastOperator}} </div>
+<div class="minus"> </div>
+  <div class="display">
+    {{ currentInput }}
   </div>
+
+  <div class="buttons">
+    <div>
+      <button (click)="inputDigit('7')">7</button>
+      <button (click)="inputDigit('8')">8</button>
+      <button (click)="inputDigit('9')">9</button>
+      <button class="operator" (click)="handleOperator('/')">/</button> 
+    </div>
+    <div>
+      <button (click)="inputDigit('4')">4</button>
+      <button (click)="inputDigit('5')">5</button>
+      <button (click)="inputDigit('6')">6</button>
+      <button class="operator" (click)="handleOperator('*')">*</button>
+    </div>
+    <div>
+      <button (click)="inputDigit('1')">1</button>
+      <button (click)="inputDigit('2')">2</button>
+      <button (click)="inputDigit('3')">3</button>
+      <button class="operator" (click)="handleOperator('-')">-</button> 
+    </div>
+    <div>
+      <button (click)="inputDigit('0')">0</button>
+      
+      <button class="equals" (click)="handleEquals()">=</button>
+      <button class="operator" (click)="handleOperator('+')">+</button> 
+    </div>
+     <div>
+       <button class="clear" (click)="clear()">C</button> 
+      
+     </div>
+  </div>
+
+</div>

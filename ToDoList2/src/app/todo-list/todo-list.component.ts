@@ -13,6 +13,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TaskService } from '../task.service';
 import { ToDoItem } from './todo-item.interface';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 
@@ -30,6 +32,7 @@ import { ToDoItem } from './todo-item.interface';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
@@ -43,26 +46,31 @@ export class TodoListComponent implements OnInit {
   newDueDate: Date | null = null;
   newTask: string = ''; // A string to store the new task input
   isDarkMode: boolean = false;
+  isLoading: boolean = false;
+
+  // For testing and expirmenting
+  loadEmptyTasks: boolean = false;
 
   constructor(private taskService: TaskService) {}
 
+  
+
   ngOnInit(): void {
-    // localStorage.setItem('todo-tasks', `[{"task":"local storage item","completed":true,"dueDate":"2023-01-01"}]`);
+   this.isLoading = true;
+
+   if(this.loadEmptyTasks === true) {
+    this.loadTasksEmpty();
+   }
+   if(this.loadEmptyTasks === false) {
     this.loadTask();
+   }
   }
 
   loadTask(): void {
-    // const savedTasks = localStorage.getItem('todo-tasks');
-  
-    // if (savedTasks) {
-    //   this.tasks = JSON.parse(savedTasks);
-    //   this.isEmpty = this.tasks.length === 0;
-    // }
-  
-    // if (!savedTasks || this.isEmpty) {
       this.taskService.getInitialTasks()
         .then((initialTasks) => {
           console.log('our initias tasks are', initialTasks);
+          this.isLoading = false;
           this.tasks = initialTasks;
           this.isEmpty = initialTasks.length === 0;
           this.savedTasks(); // optional: save it to localStorage
@@ -70,7 +78,20 @@ export class TodoListComponent implements OnInit {
         .catch((error) => {
           console.error('Failed to load initial tasks:', error);
         });
-    // }
+  }
+
+  loadTasksEmpty(): void {
+    this.taskService.getInitialTasksEmpty()
+    .then((initialTasks) => {
+      this.isLoading = false;
+      console.log('our initias tasks are', initialTasks);
+      this.tasks = initialTasks;
+      this.isEmpty = initialTasks.length === 0;
+      this.savedTasks(); // optional: save it to localStorage
+    })
+    .catch((error) => {
+      console.error('Failed to load initial tasks:', error);
+    });
   }
 
   addTask() {

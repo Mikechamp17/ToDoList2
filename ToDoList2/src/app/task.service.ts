@@ -35,6 +35,15 @@ export class TaskService {
     });
   }
 
+  getInitialTasksEmpty(): Promise<ToDoItem[]> {
+    return new Promise<ToDoItem[]>((resolve, reject) => {
+      setTimeout(() => {
+        const tasks: ToDoItem[] = [];
+          resolve(tasks);  
+      }, 5000);
+    });
+  }
+
   getEmptyTasks() {
     return new Promise<ToDoItem[]>((resolve, reject) => {
       const emptyList: ToDoItem[] = [];
