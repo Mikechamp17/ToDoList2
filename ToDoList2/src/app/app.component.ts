@@ -6,12 +6,16 @@ import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, FormsModule, HeaderComponent, RouterModule, MatSidenavModule, MatIconModule, MatButtonModule], // Add TodoListComponent and FormsModule to imports
+  imports: [RouterOutlet, FormsModule, HeaderComponent, RouterModule, MatSidenavModule, MatIconModule, MatButtonModule, MatListModule,ReactiveFormsModule], // Add TodoListComponent and FormsModule to imports
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

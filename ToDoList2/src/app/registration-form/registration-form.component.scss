@@ -1,0 +1,56 @@
+
+
+.main {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .namesMain {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .form-field {
+    flex: 1;
+  }
+  
+  .email{
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .dob{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+
+  .passwords{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+  }
+  
+ .submit-button {
+    margin-top: 20px;
+    background-color: #faf8f8;
+    color:rgb(39, 52, 195);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+  
+ 
+

@@ -1,12 +1,12 @@
 <div class="wrapping-div">
   <div class="input">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Task</mat-label>
       <input matInput type="text" [(ngModel)]="newTask" placeholder="New task" (keydown.enter)="addTask()" />
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Due date</mat-label>
       <input matInput [matDatepicker]="picker" [(ngModel)]="newDueDate" />
       <mat-datepicker-toggle matSuffix [for]="picker">

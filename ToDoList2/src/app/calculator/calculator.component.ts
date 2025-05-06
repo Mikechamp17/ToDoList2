@@ -15,7 +15,7 @@ export class CalculatorComponent {
   operator: string | null = null; /// stores the (+ - / *)
   waitForSecondNumber: boolean = false; // A flag to know if the next digit press should start a new number
   lastOperator: string = ''; // = sign 
-  fullEquation: string = '';
+  
 
   inputDigit(digit: string): void {
     // Check if we were waiting for a new number (after an operator was pressed)
@@ -33,7 +33,7 @@ export class CalculatorComponent {
     // Store the first number if it hasn't been stored yet
     if (this.firstOperand === null) {
       this.firstOperand = value;
-      this.lastOperator = op; //-------
+      this.lastOperator = op; //----
     }
    
 

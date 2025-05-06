@@ -4,11 +4,14 @@
  
    <mat-drawer #drawer mode="side">
     <div class="drawer-content">
-      <div class="drawer1">
-        <button mat-button> <mat-list-item routerLink="/todo" (click)="drawer.close()">To-Do List</mat-list-item></button>
+      <div class="drawer1" routerLink="/todo" (click)="drawer.close()">
+        <button mat-button> <mat-list-item>To-Do List</mat-list-item></button>
       </div>
-      <div class="drawer2">
-       <button mat-button> <mat-list-item routerLink="/calculator" (click)="drawer.close()">Calculator</mat-list-item> </button>
+      <div class="drawer2" routerLink="/calculator" (click)="drawer.close()">
+       <button mat-button> <mat-list-item >Calculator</mat-list-item> </button>
+    </div>
+    <div class="drawer3" routerLink="/registrationForm" (click)="drawer.close()">
+      <button mat-button> <mat-list-item >registration-form</mat-list-item> </button>
     </div>
     </div>
   </mat-drawer>
