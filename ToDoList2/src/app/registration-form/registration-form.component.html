@@ -1,0 +1,98 @@
+
+
+<div class="main">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    
+    <div class="namesMain">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>First name</mat-label>
+
+        <input matInput placeholder="First Name" formControlName="firstName" />
+        <mat-error *ngIf="firstName?.hasError('required') && firstName?.touched">
+          First name is required.
+        </mat-error>
+        <mat-error *ngIf="firstName?.hasError('minlength') && firstName?.touched">
+          First name must be at least 3 characters long.
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput placeholder="Last Name" formControlName="lastName" />
+
+        <mat-error *ngIf="lastName?.hasError('required') && lastName?.touched">
+          Last name is required.
+        </mat-error>
+        <mat-error *ngIf="lastName?.hasError('minlength') && lastName?.touched">
+          Last name must be at least 3 characters long.
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <div class="email">
+      <mat-form-field class="email" appearance="outline">
+        <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" formControlName="emailAddress" />
+    <mat-error *ngIf="emailAddress?.hasError('required') && emailAddress?.touched">
+      Email is required.
+    </mat-error>
+    <mat-error *ngIf="emailAddress?.hasError('email') && emailAddress?.touched">
+      Please enter a valid email address.
+    </mat-error>
+    
+      </mat-form-field>
+    </div>
+
+    <div>
+      <div class="dob">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="MM/DD/YYYY" />
+          <mat-error *ngIf="dob?.hasError('required') && dob?.touched">
+            Date of birth is required.
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="passwords">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" />
+        <mat-error *ngIf="password?.hasError('required') && password?.touched">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="password?.hasError('minlength') && password?.touched">
+          Password must be at least 8 characters.
+        </mat-error>
+        <mat-error *ngIf="password?.hasError('pattern') && password?.touched">
+          Must include 1 uppercase, 1 lowercase, and 1 number.
+        </mat-error>
+      </mat-form-field>
+    
+
+    
+      <mat-form-field class="confirmPassword" appearance="outline">
+        <mat-label>Confirm password</mat-label>
+        <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password" />
+        <mat-error *ngIf="confirmPassword?.hasError('required') && confirmPassword?.touched">
+          Confirm password is required.
+        </mat-error>
+        <mat-error *ngIf="confirmPassword?.hasError('mismatch') && confirmPassword?.touched">
+          Passwords do not match.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="submit-button">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+

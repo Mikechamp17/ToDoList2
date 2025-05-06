@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { CalculatorComponent } from './todo-list/calculator/calculator.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import {RegistrationFormComponent} from './registration-form/registration-form.component'
 
 export const routes: Routes = [
     {
@@ -10,7 +11,13 @@ export const routes: Routes = [
     {
         path: 'calculator',
         loadComponent: () =>
-          import('./todo-list/calculator/calculator.component').then(m => m.CalculatorComponent),
-      }
+          import('./calculator/calculator.component').then(m => m.CalculatorComponent),
+      },
+
+    {
+      path : 'registrationForm',
+      loadComponent: () =>
+        import('./registration-form/registration-form.component').then(m => m.RegistrationFormComponent),
+    },
       
 ];
