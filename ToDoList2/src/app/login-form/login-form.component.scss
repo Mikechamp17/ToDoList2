@@ -1,0 +1,61 @@
+form {
+border: 1px solid #ccc;
+background-color: #f8f9fa;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+padding: 30px;
+
+}
+
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+ .Title{
+    font-size: 30px;
+    font-weight: bolder;
+    color: rgb(39, 52, 195);
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+
+.username-password{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.feedback-message {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+
+    &.success p {
+        color: green;
+    }
+    &.failure p{
+        color: red;
+    }
+}
+
+
+
+
+    

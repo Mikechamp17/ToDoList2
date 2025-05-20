@@ -1,5 +1,5 @@
  <app-header></app-header>
-
+<div>
 <mat-drawer-container class="drawer-container">
  
    <mat-drawer #drawer mode="side">
@@ -13,14 +13,20 @@
     <div class="drawer3" routerLink="/registrationForm" (click)="drawer.close()">
       <button mat-button> <mat-list-item >registration-form</mat-list-item> </button>
     </div>
+    <div class="drawer4" routerLink="/loginForm" (click)="drawer.close()">
+      <button mat-button> <mat-list-item >login</mat-list-item> </button>
+    </div>
     </div>
   </mat-drawer>
+  
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-drawer-container>
-
+</div>
 <router-outlet></router-outlet>
+
+<app-footer> </app-footer>
 
 
 

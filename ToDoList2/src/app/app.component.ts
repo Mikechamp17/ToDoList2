@@ -8,14 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
-
+import { FooterComponent } from './footer/footer.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, FormsModule, HeaderComponent, RouterModule, MatSidenavModule, MatIconModule, MatButtonModule, MatListModule,ReactiveFormsModule], // Add TodoListComponent and FormsModule to imports
+  imports: [RouterOutlet, FormsModule, HeaderComponent, RouterModule, MatSidenavModule, MatIconModule, MatButtonModule, MatListModule,ReactiveFormsModule, FooterComponent], // Add TodoListComponent and FormsModule to imports
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,56 +1,61 @@
-
-
 .main {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+
   form {
     width: 100%;
     max-width: 600px;
   }
-  
+
   .namesMain {
     display: flex;
     gap: 10px;
     width: 100%;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
   }
-  
-  .form-field {
-    flex: 1;
-  }
-  
-  .email{
+
+  .email {
     width: 100%;
     padding-top: 10px;
   }
 
-  .dob{
+  .dob {
     display: flex;
     gap: 10px;
     width: 100%;
     padding-top: 10px;
   }
 
-
-  .passwords{
+  .passwords {
     display: flex;
     gap: 10px;
     width: 100%;
     padding-top: 10px;
   }
-  
- .submit-button {
+
+  .submit-button {
     margin-top: 20px;
     background-color: #faf8f8;
-    color:rgb(39, 52, 195);
+    color: rgb(39, 52, 195);
     border: none;
     padding: 10px 20px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
   }
-  
- 
+}
 
+.btn-disabled {
+  cursor: not-allowed;
+}
+
+.btn-enabled {
+  cursor: pointer;
+}
+
+.form-field {
+  flex: 1;
+}

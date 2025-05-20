@@ -1,67 +1,124 @@
-import { Component, inject, OnInit } from '@angular/core';
-import {FormControl, FormGroup,} from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import {FormBuilder,ReactiveFormsModule} from '@angular/forms';
-import { RegistrationForm } from './registration-form-interface';
-import {Validators} from '@angular/forms';
-///styling imports
-import {ChangeDetectionStrategy,} from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-//Date picker imports
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
 
+
+
+import { Component, inject } from '@angular/core';
+import {
+  AbstractControl, 
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors, 
+  Validators
+} from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { RegistrationForm } from './registration-form-interface'; // RegistrationDetails unused in this component
+
+// Styling imports
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-registration-form',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,MatFormFieldModule,MatIconModule,MatInputModule,MatButtonModule,MatDatepickerModule, MatNativeDateModule,MatInputModule,CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    RouterModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgClass
+  ],
   templateUrl: './registration-form.component.html',
   styleUrl: './registration-form.component.scss'
 })
-
-//private formBuilder = inject(FormBuilder); ask Jordan about this
-
-
-
 export class RegistrationFormComponent {
   formBuilder = inject(FormBuilder);
-  registrationForm = this.formBuilder.group({
-    firstName: new FormControl('',[Validators.required,Validators.minLength(3)]),
-    lastName: new FormControl('',[Validators.required,Validators.minLength(3)]),
-    emailAddress: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[
-      Validators.required,Validators.minLength(8),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)]),
-    confirmPassword: new FormControl('',Validators.required),
-    dob: new FormControl('', Validators.required),
 
-
+  registrationForm: FormGroup<RegistrationForm> = this.formBuilder.group({
+    firstName: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
+    emailAddress: new FormControl<string>('', [Validators.required, Validators.email]),
+    password: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
+    ]),
+    confirmPassword: new FormControl<string>('', Validators.required),
+    dob: new FormControl<string>('', Validators.required),
+  }, {
+    validators: this.passwordMatchValidator
   });
 
-  get firstName() { return this.registrationForm.get('firstName'); }
-  get lastName() { return this.registrationForm.get('lastName'); }
-  get emailAddress() { return this.registrationForm.get('emailAddress'); }
-  get password() { return this.registrationForm.get('password'); }
-  get confirmPassword() { return this.registrationForm.get('confirmPassword'); }
-  get dob() { return this.registrationForm.get('dob'); }
+ 
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    const errorKey = 'mismatch'; 
 
-    
+    if (!password || !confirmPassword || password === confirmPassword) {
+      if (control.get('confirmPassword')?.hasError(errorKey)) {
+        const currentErrors = control.get('confirmPassword')?.errors;
+        if (currentErrors && Object.keys(currentErrors).length > 1) {
+          delete currentErrors[errorKey];
+          control.get('confirmPassword')?.setErrors(currentErrors);
+        } else {
+          control.get('confirmPassword')?.setErrors(null);
+        }
+      }
+      return null;
+    }
 
+    const error = { [errorKey]: true }; // create a validiation function include it in your validators validationErrors | null
+    control.get('confirmPassword')?.setErrors(error);
+    return error;
+  }
+ 
 
   onSubmit() {
     if (this.registrationForm.invalid) {
-      this.registrationForm.markAllAsTouched(); 
+      this.registrationForm.markAllAsTouched();
+      console.log('Form is invalid. Group errors:', this.registrationForm.errors);
+      Object.keys(this.registrationForm.controls).forEach(key => {
+        const controlErrors = this.registrationForm.get(key)?.errors;
+        if (controlErrors) {
+          console.log(`Errors on control '${key}':`, JSON.stringify(controlErrors));
+        }
+      });
       return;
     }
-  
+
+    console.log('Form Submitted Successfully!');
     console.log(this.registrationForm.value);
+
+    const firstName = this.registrationForm.controls.firstName.value;
+    console.log('First name is', firstName);
+
+    const lastName = this.registrationForm.controls.lastName.value;
+    console.log('Last name is', lastName);
+
+    const dob = this.registrationForm.controls.dob.value;
+    console.log('Date of Birth is', dob);
+
+    const emailAddress = this.registrationForm.controls.emailAddress.value;
+    console.log('Email address is', emailAddress);
+
+    const password = this.registrationForm.controls.password.value;
+    console.log('Password is', password);
+
+    const confirmPassword = this.registrationForm.get('confirmPassword')?.value;
+    console.log('Confirm password is', confirmPassword); ///check with jordan
+
+
+
   }
-
-  
 }
-
-
+  

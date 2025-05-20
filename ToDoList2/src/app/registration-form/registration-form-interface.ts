@@ -1,9 +1,20 @@
-export interface RegistrationForm {
+import { FormControl } from "@angular/forms";
+
+export interface RegistrationDetails {
     firstName: string;
     lastName: string;
-    emailAdress: string|number;
-    password: string|number;
-    repPassword: string|number;
+    emailAddress: string;
+    password: string;
+    repPassword: string;
     dob: Date;
+}
+
+export interface RegistrationForm {
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    emailAddress: FormControl<string>;
+    password: FormControl<string>;
+    confirmPassword: FormControl<string>;
+    dob: FormControl<string>;
 }
 
