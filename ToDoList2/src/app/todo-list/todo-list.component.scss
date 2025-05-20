@@ -25,9 +25,9 @@ div {
   width: 700px;
   margin: 20px auto;
   padding: 20px;
-  // border: 2px, solid, rgb(186, 186, 186);
+;
   border-radius: 5px;
-  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
 }
 
 li {
@@ -54,24 +54,8 @@ li {
   justify-content: center;
 }
 
-//dark mode
 
-/* Light Theme Variables */
-:root {
-  --bg-color: #f0f0f0;
-  --text-color: #333;
-  --primary-color: #007bff;
-  --accent-color: #0056b3;
-  --border-color: #ddd;
-  --list-bg-color: #fff;
-}
 
-/* Dark Theme Variables */
-.dark-mode {
-  --bg-color: #333;
-  --text-color: #f0f0f0;
-  --primary-color: #64b5f6;
-  --accent-color: #90caf9;
-  --border-color: #555;
-  --list-bg-color: #444;
-}
+
+
+

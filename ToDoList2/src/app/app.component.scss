@@ -16,14 +16,22 @@
 
 }
 
-/* You'll still need styles for the links/buttons if desired */
+
 .drawer1 button[mat-button],
 .drawer2 button[mat-button],
-.drawer3 button[mat-button]
+.drawer3 button[mat-button],
+.drawer4 button[mat-button]
  {
   width: 100%; 
   text-align: left; 
  
 }
 
+html, body, app-root {
+    height: 100%;
+  }
+  body {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 

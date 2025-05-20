@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -6,10 +12,9 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
+// input[type=number] {
+//   -moz-appearance: textfield;
+// }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

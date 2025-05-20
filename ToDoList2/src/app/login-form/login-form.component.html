@@ -1,0 +1,37 @@
+<div class="login-form">
+  <div class="Title">
+    <h3>Login</h3>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="username-password">
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Enter your username" formControlName="username" />
+        @if (loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)){
+        <mat-error> @if (loginForm.get('username')?.hasError('required')) { Username is required. } </mat-error>}
+      </mat-form-field>
+   
+
+    
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter your password" formControlName="password" />
+        @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)){
+        <mat-error> @if (loginForm.get('password')?.hasError('required')) { Password is required. } </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    
+    
+
+    <div class="button" ngClass="{'btn-disabled': loginForm.invalid, 'btn-enabled': loginForm.valid}">
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="full-width-field">Log In</button>
+    </div>
+
+    @if (feedbackMessage) {
+    <div class="feedback-message" [ngClass]="{ success: loginSuccessful, failure: !loginSuccessful && loginAttempted }">
+      <p>{{ feedbackMessage }}</p>
+    </div>
+    }
+  </form>
+</div>

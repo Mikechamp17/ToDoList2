@@ -1,0 +1,25 @@
+
+:host {
+
+}
+
+
+
+.footer-container{
+
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: rgb(39, 52, 195);
+    border-top: 1px solid #ccc;
+    p{
+      color: white;
+    }
+}
+
