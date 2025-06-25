@@ -25,6 +25,11 @@ export const routes: Routes = [
       loadComponent: () =>
         import('./login-form/login-form.component').then(m => m.LoginFormComponent),
     },
+       {
+      path : 'observables',
+      loadComponent: () =>
+        import('./observables/observables.component').then(m => m.ObservablesComponent),
+    },
       
       
 ];

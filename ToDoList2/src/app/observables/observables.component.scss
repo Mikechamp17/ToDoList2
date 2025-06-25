@@ -1,0 +1,32 @@
+observable-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.controls button {
+  margin-right: 10px; /* Spacing between buttons */
+}
+/* CSS classes for status colors */
+.status-idle { color: gray; }
+.status-active { color: blue; font-weight: bold; }
+.status-completed { color: green; font-weight: bold; }
+.status-error { color: red; font-weight: bold; }
+/* Styling for the error message block */
+.error-message {
+  color: red;
+  background-color: #ffe0e0;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+ul {
+  list-style-type: disc; /* Bullet points for list items */
+  padding-left: 20px;
+}
+li {
+  margin-bottom: 5px; /* Spacing between list items */
+}

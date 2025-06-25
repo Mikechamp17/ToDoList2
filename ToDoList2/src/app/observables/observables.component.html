@@ -1,0 +1,43 @@
+<div class="observable-container">
+  <h3>Basic Observable Demo</h3>
+
+  <div class="controls">
+    <button mat-raised-button color="primary" (click)="startObservable()"
+      [disabled]="currentStatus === 'Active'">
+      Start Observable
+    </button>
+    <button mat-raised-button (click)="resetObservable()">
+      Reset
+    </button>
+  </div>
+
+  <p>
+    <strong>Status:</strong>
+    <span [ngClass]="{
+      'status-idle': currentStatus === 'Idle',
+      'status-active': currentStatus === 'Active',
+      'status-completed': currentStatus === 'Completed',
+      'status-error': currentStatus === 'Error'
+    }">
+      {{ currentStatus }} </span>
+  </p>
+
+  @if (poetentialError) {
+    <p class="error-message">
+      <strong>Error:</strong> {{ poetentialError }} </p>
+  }
+
+  <h4>Emitted Numbers:</h4>
+  @if (emmitedNumbers.length > 0) {
+    <ul>
+      @for (num of emmitedNumbers; track num) {
+        <li>{{ num }}</li> }
+    </ul>
+  } @else if (currentStatus === 'Idle') {
+    <p>Click "Start Observable" to begin receiving numbers.</p>
+  } @else if (currentStatus === 'Active') {
+    <p>Waiting for numbers to be emitted...</p>
+  } @else if (currentStatus === 'Completed') {
+    <p>Observable completed. No more numbers will be emitted.</p>
+  }
+</div>

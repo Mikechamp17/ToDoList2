@@ -1,32 +1,40 @@
- <app-header></app-header>
-<div>
-<mat-drawer-container class="drawer-container">
- 
-   <mat-drawer #drawer mode="side">
-    <div class="drawer-content">
-      <div class="drawer1" routerLink="/todo" (click)="drawer.close()">
-        <button mat-button> <mat-list-item>To-Do List</mat-list-item></button>
-      </div>
-      <div class="drawer2" routerLink="/calculator" (click)="drawer.close()">
-       <button mat-button> <mat-list-item >Calculator</mat-list-item> </button>
+<div [style.background-color]="appBackgroundColor" class="app-container">
+  <app-header></app-header>
+  <div class="drawer-container">
+    <div class="inner-drawer">
+      <mat-drawer-container>
+        <mat-drawer #drawer mode="side" class="custom-drawer-width">
+          <div class="drawer-content">
+            <mat-list>
+              <div class="drawer1" routerLink="/todo" (click)="drawer.close()">
+                <button mat-button><mat-list-item>To-Do List</mat-list-item></button>
+              </div>
+              <div class="drawer2" routerLink="/calculator" (click)="drawer.close()">
+                <button mat-button><mat-list-item>Calculator</mat-list-item></button>
+              </div>
+              <div class="drawer3" routerLink="/registrationForm" (click)="drawer.close()">
+                <button mat-button><mat-list-item>Registration-form</mat-list-item></button>
+              </div>
+              <div class="drawer4" routerLink="/loginForm" (click)="drawer.close()">
+                <button mat-button><mat-list-item>Login</mat-list-item></button>
+              </div>
+              <div class="drawer5" routerLink="/observables" (click)="drawer.close()">
+                <button mat-button><mat-list-item>Observables</mat-list-item></button>
+              </div>
+            </mat-list>
+          </div>
+        </mat-drawer>
+      </mat-drawer-container>
     </div>
-    <div class="drawer3" routerLink="/registrationForm" (click)="drawer.close()">
-      <button mat-button> <mat-list-item >registration-form</mat-list-item> </button>
+    <div class="icon-container">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
     </div>
-    <div class="drawer4" routerLink="/loginForm" (click)="drawer.close()">
-      <button mat-button> <mat-list-item >login</mat-list-item> </button>
-    </div>
-    </div>
-  </mat-drawer>
-  
-  <button mat-icon-button (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-drawer-container>
+  </div>
+  <router-outlet></router-outlet>
+    
+
+  <app-footer [buttonLabel]="buttonLabel" (buttonClicked)="handleFooterClick()"> </app-footer>
 </div>
-<router-outlet></router-outlet>
-
-<app-footer> </app-footer>
-
-
 

@@ -15,11 +15,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 100px;
     background-color: rgb(39, 52, 195);
     border-top: 1px solid #ccc;
     p{
       color: white;
     }
+    .footer-button {
+  display: flex;          
+  align-content: center;  
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+}
+.footer-text{
+color: white;
+font-size: xx-small;
+}
 }
 
