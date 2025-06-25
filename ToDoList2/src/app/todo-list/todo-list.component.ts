@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-//import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 // Adding date picker
 
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TaskService } from '../task.service';
 import { ToDoItem } from './todo-item.interface';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Subscription } from 'rxjs'; 
 
 
 
@@ -23,6 +24,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   selector: 'app-todo-list',
   standalone: true,
   imports: [
+    
+    HeaderComponent,
     CommonModule,
     FormsModule,
     MatInputModule,
@@ -39,7 +42,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 })
 
 //Defines the structure of a to-do item with task and completed properties.
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   tasks: ToDoItem[] = []; // an array to store the todo itemas
   isEmpty: boolean = true;
 
@@ -51,48 +54,68 @@ export class TodoListComponent implements OnInit {
   // For testing and expirmenting
   loadEmptyTasks: boolean = false;
 
-  constructor(private taskService: TaskService) {}
+  private tasksSubscribtion: Subscription | undefined;
 
-  
+    constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
+
+    console.log('TodoListComponent: NgOnInit called');
    this.isLoading = true;
 
    if(this.loadEmptyTasks === true) {
     this.loadTasksEmpty();
-   }
-   if(this.loadEmptyTasks === false) {
+   }else {
     this.loadTask();
    }
   }
 
+
   loadTask(): void {
-      this.taskService.getInitialTasks()
-        .then((initialTasks) => {
-          console.log('our initias tasks are', initialTasks);
+      console.log('TodoListComponent: Attempting to load tasks via observable');
+      this.tasksSubscribtion = this.taskService.getInitialTasks().subscribe({
+        next:(initialTasks: ToDoItem[]) => {
           this.isLoading = false;
           this.tasks = initialTasks;
-          this.isEmpty = initialTasks.length === 0;
+          this.isEmpty =initialTasks.length === 0;
           this.savedTasks(); // optional: save it to localStorage
-        })
-        .catch((error) => {
-          console.error('Failed to load initial tasks:', error);
-        });
+      },
+      error: (error: any) => {
+        console.error('TodoListComponent:  Failed to load initial tasks via observable:');
+        this.isLoading = false;
+        this.tasks = [];
+        this.isEmpty = true; 
+      },
+      complete: () => {
+        console.log('TodoListComponent:  Initial tasks loaded successfully via observable');
+      }
+      });
+
+       
   }
 
   loadTasksEmpty(): void {
-    this.taskService.getInitialTasksEmpty()
-    .then((initialTasks) => {
-      this.isLoading = false;
-      console.log('our initias tasks are', initialTasks);
-      this.tasks = initialTasks;
-      this.isEmpty = initialTasks.length === 0;
-      this.savedTasks(); // optional: save it to localStorage
-    })
-    .catch((error) => {
-      console.error('Failed to load initial tasks:', error);
+    console.log('TodoListComponent: Attempting to load EMPTY tasks via Observable');
+    // CORRECTED: Call getInitialTasksEmpty() from the service
+    this.tasksSubscribtion = this.taskService.getInitialTasksEmpty().subscribe({
+      next: (initialTasks: ToDoItem[]) => {
+        this.isLoading = false;
+        this.tasks = initialTasks;
+        this.isEmpty = initialTasks.length === 0;
+        this.savedTasks();
+      },
+      error: (error: any) => {
+        console.error('TodoListComponent: Failed to load EMPTY initial tasks via Observable:', error);
+        this.isLoading = false;
+        this.tasks = [];
+        this.isEmpty = true;
+      },
+      complete: () => {
+        console.log('TodoListComponent: Empty tasks loaded successfully via Observable');
+      }
     });
   }
+
 
   addTask() {
     //This adds a new task to the tasks array
@@ -105,6 +128,7 @@ export class TodoListComponent implements OnInit {
       this.newTask = '';
       this.newDueDate = null;
       this.savedTasks();
+      this.isEmpty = this.tasks.length === 0; // Update isEmpty based on tasks length
     }
   }
 
@@ -112,27 +136,26 @@ export class TodoListComponent implements OnInit {
     // toggles the completed status of th etask
     this.tasks[index].completed = !this.tasks[index].completed;
     this.savedTasks();
+     this.isEmpty = this.tasks.length === 0;
   }
 
   removeTask(index: number) {
     // removes the task from the tasks array
     this.tasks.splice(index, 1);
     this.savedTasks();
+    this.isEmpty = this.tasks.length === 0;
   }
 
   savedTasks(): void {
     localStorage.setItem('todo-tasks', JSON.stringify(this.tasks));
   }
-  //dark mode
-  toggleTheme(): void {
-    // Add this method
-    this.isDarkMode = !this.isDarkMode;
-    if (this.isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
+   ngOnDestroy(): void {
+    // Unsubscribe from the tasks subscription to prevent memory leaks
+    if (this.tasksSubscribtion) {
+      this.tasksSubscribtion.unsubscribe();
+      console.log('TodoListComponent: Unsubscribed from tasks loading observable');
     }
-  }
+   }
 
 
 }

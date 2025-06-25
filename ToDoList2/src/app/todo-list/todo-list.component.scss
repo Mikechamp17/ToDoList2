@@ -3,6 +3,14 @@
   align-items: center;
   border: 2px, solid, rgb(186, 186, 186);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  // div {
+  //   width: 700px;
+  //   margin: 20px auto;
+  //   padding: 20px;
+  //  border-radius: 5px;
+   
+  // }
 }
 input[type="text"] {
   flex: 1;
@@ -25,24 +33,43 @@ div {
   width: 700px;
   margin: 20px auto;
   padding: 20px;
-;
+
   border-radius: 5px;
  
 }
 
-li {
+
+// mat-list-item{
+//   display: flex;
+//   flex-direction: column;
+// }
+
+
+.task-list{
   display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
 }
 
-.input {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 650px;
-}
+
+
+
+
+
+// li {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 10px;
+//   border-bottom: 1px solid #eee;
+// }
+
+// .input {
+//   display: flex;
+  
+//   gap: 10px;
+//   align-items: center;
+//   width: 650px;
+// }
 
 .completed-task {
   text-decoration: line-through;

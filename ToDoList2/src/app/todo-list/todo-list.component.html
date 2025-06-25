@@ -5,7 +5,7 @@
       <input matInput type="text" [(ngModel)]="newTask" placeholder="New task" (keydown.enter)="addTask()" />
     </mat-form-field>
   </div>
-  <div>
+  <div class="">
     <mat-form-field appearance="outline">
       <mat-label>Due date</mat-label>
       <input matInput [matDatepicker]="picker" [(ngModel)]="newDueDate" />
@@ -20,12 +20,12 @@
   </div>
 </div>
 
-<div>
+<div class="task-list">
   <mat-list>
-    @if(tasks?.length > 0 && isLoading === false) {
+    @if(tasks?.length > 0 && isLoading === false) { @for(task of tasks; track task; let i = $index) {
     <mat-list-item>
-      @for(task of tasks; track task; let i = $index) {
-      <mat-checkbox [checked]="task.completed" (change)="toggleTask(i)"></mat-checkbox>
+      <!-- @for(task of tasks; track task; let i = $index) {
+      <mat-checkbox [checked]="task.completed" (change)="toggleTask(i)"></mat-checkbox> -->
       <span>{{ task.task }}</span>
       @if(task.dueDate) {
       <span> (Due: {{ task.dueDate | date : "yyyy-MM-dd" }})</span>
@@ -33,14 +33,13 @@
       <button mat-icon-button color="warn" class="btn" (click)="removeTask(i)">
         <mat-icon>delete</mat-icon>
       </button>
-      }
     </mat-list-item>
-    }
-    @if(isLoading === true){
-    <div class="Spinner"><mat-spinner></mat-spinner></div>
-    }
-    @if(isLoading === false && tasks?.length <=0) {
-        <span>No tasks</span>
   }
+}
+      @if(isLoading === true){
+    <div class="Spinner"><mat-spinner></mat-spinner></div>
+    } @if(isLoading === false && tasks?.length <=0) {
+    <span>No tasks</span>
+    }
   </mat-list>
 </div>
