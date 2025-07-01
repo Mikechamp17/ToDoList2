@@ -1,8 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
 
 
 input::-webkit-outer-spin-button,
@@ -16,8 +11,7 @@ input::-webkit-inner-spin-button {
 //   -moz-appearance: textfield;
 // }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 
 
@@ -60,3 +54,17 @@ mat-checkbox {
 }
 
 
+/* src/styles.scss */
+
+html,
+body {
+  height: 100%; /* Ensures html and body take up full viewport height */
+  margin: 0;     /* Removes default browser margins */
+  font-family: Roboto, "Helvetica Neue", sans-serif; /* Standard Angular Material font stack */
+}
+f
+
+app-root {
+  display: block; /* Ensures app-root behaves like a block element for layout */
+  height: 100%; /* Makes app-root take up full height of its parent (body) */
+}

@@ -1,63 +1,157 @@
+// .app-container {
+//   min-height: 100%; // Makes the container at least the full height of the viewport
+//   transition: background-color 0.5s ease;
+// }
+
+// .mat-drawer-container {
+//   height: 100px;
+// }
+
+// .mat-drawer {
+//   margin-top: 10px;
+//   width: 200px;
+// }
+
+// .drawer-content {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 10px;
+
+//   > mat-list {
+//     width: 100%;
+//     display: flex;
+//   }
+// }
+// .custom-drawer-width {
+//   width: 800px;
+// }
+
+// .drawer1 button[mat-button],
+// .drawer2 button[mat-button],
+// .drawer3 button[mat-button],
+// .drawer4 button[mat-button],
+// .drawer5 button[mat-button] {
+//   width: 100%;
+//   text-align: left;
+// }
+
+// html,
+// body,
+// app-root {
+//   height: 100%;
+// }
+// body {
+//   margin-bottom: 0;
+//   margin-top: 0;
+// }
+
+// .drawer-container {
+//     display: flex;
+//     width: 100%;
+//     flex-basis: 100%;
+
+//     .inner-drawer{
+//         display: flex;
+//         flex-basis: 80%;
+//     }
+//   .icon-container {
+//       display: flex;
+//       flex-basis: 20%;
+//   }
+// }
+
+
+/* src/app/app.component.scss */
+
 .app-container {
-  min-height: 100%; // Makes the container at least the full height of the viewport
-  transition: background-color 0.5s ease;
-}
-
-.mat-drawer-container {
-  height: 100px;
-}
-
-.mat-drawer {
-  margin-top: 10px;
-  width: 200px;
-}
-
-.drawer-content {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  height: 100vh; /* Make the container fill the entire viewport height */
+  overflow: hidden; /* Prevent unwanted scrolls on the main container */
+  transition: background-color 0.3s ease-in-out;
+}
 
-  > mat-list {
-    width: 100%;
+.app-toolbar {
+  // Styles for the top toolbar
+  z-index: 2; /* Ensure the toolbar stays on top of the sidenav if it's 'over' mode */
+  display: flex;
+  align-items: center;
+  padding: 0 16px; // Standard Material padding
+}
+
+.app-title {
+  // Style for your application title in the toolbar
+  margin-left: 20px; // Space from the menu icon
+  font-size: 1.5em;
+  font-weight: 500;
+  color: white; // Ensure title is visible on primary toolbar
+}
+
+.toolbar-spacer {
+  // Pushes elements to the right in the toolbar
+  flex: 1 1 auto;
+}
+
+.app-sidenav-container {
+  flex: 1; /* Allows the sidenav container to take up all available vertical space */
+  // Ensure the background color from app-container doesn't bleed through
+  background-color: transparent;
+}
+
+.app-sidenav {
+  width: 250px; /* Adjust as needed for the sidenav width */
+  padding-top: 20px; // Space from the top
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Optional: Add a subtle shadow */
+}
+
+mat-nav-list {
+  padding-top: 0; /* Remove default top padding */
+}
+
+mat-list-item {
+  height: 48px; /* Standard Material Design list item height */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center items */
+  gap: 10px; /* Space between icon and text */
+  padding: 0 16px; /* Standard Material padding */
+  text-decoration: none; // Remove underline from anchor tags
+  color: inherit; // Inherit text color
+
+  .mat-list-item-content { // Target the content within mat-list-item
     display: flex;
+    align-items: center;
+    width: 100%; // Ensure content takes full width
+    height: 100%; // Ensure content takes full height
+  }
+
+  mat-icon {
+    margin-right: 8px; // Space between icon and text
   }
 }
-.custom-drawer-width {
-  width: 800px;
+
+/* Optional: Add styling for active router link */
+.mat-list-item.router-link-active {
+  background-color: rgba(0, 0, 0, 0.08); // Subtle highlight for active link
+  font-weight: 500;
 }
 
-.drawer1 button[mat-button],
-.drawer2 button[mat-button],
-.drawer3 button[mat-button],
-.drawer4 button[mat-button],
-.drawer5 button[mat-button] {
-  width: 100%;
-  text-align: left;
+.app-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Allow content area to take remaining height */
+  padding: 20px; /* Add some padding around the routed content */
+  overflow: auto; /* Add scroll if content exceeds height */
 }
 
-html,
-body,
-app-root {
-  height: 100%;
-}
-body {
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-.drawer-container {
-    display: flex;
-    width: 100%;
-    flex-basis: 100%;
-
-    .inner-drawer{
-        display: flex;
-        flex-basis: 80%;
-    }
-  .icon-container {
-      display: flex;
-      flex-basis: 20%;
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .app-sidenav {
+    width: 80%; // Make sidenav wider on smaller screens
+  }
+  .app-sidenav-container {
+    // On smaller screens, the sidenav will be 'over', so no need for side margin
+    margin-left: 0 !important;
   }
 }

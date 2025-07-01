@@ -1,40 +1,32 @@
 <div [style.background-color]="appBackgroundColor" class="app-container">
-  <app-header></app-header>
-  <div class="drawer-container">
-    <div class="inner-drawer">
-      <mat-drawer-container>
-        <mat-drawer #drawer mode="side" class="custom-drawer-width">
-          <div class="drawer-content">
-            <mat-list>
-              <div class="drawer1" routerLink="/todo" (click)="drawer.close()">
-                <button mat-button><mat-list-item>To-Do List</mat-list-item></button>
-              </div>
-              <div class="drawer2" routerLink="/calculator" (click)="drawer.close()">
-                <button mat-button><mat-list-item>Calculator</mat-list-item></button>
-              </div>
-              <div class="drawer3" routerLink="/registrationForm" (click)="drawer.close()">
-                <button mat-button><mat-list-item>Registration-form</mat-list-item></button>
-              </div>
-              <div class="drawer4" routerLink="/loginForm" (click)="drawer.close()">
-                <button mat-button><mat-list-item>Login</mat-list-item></button>
-              </div>
-              <div class="drawer5" routerLink="/observables" (click)="drawer.close()">
-                <button mat-button><mat-list-item>Observables</mat-list-item></button>
-              </div>
-            </mat-list>
-          </div>
-        </mat-drawer>
-      </mat-drawer-container>
-    </div>
-    <div class="icon-container">
-      <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-  </div>
-  <router-outlet></router-outlet>
-    
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="app-title">{{ title }}</span>
+  <span class="toolbar-spacer"></span> <app-header></app-header>
+   
+  </mat-toolbar>
+
+  <mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="app-sidenav">
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="/todo" (click)="closeSidenav()"> <mat-icon matListItemIcon>list_alt</mat-icon> To-Do List </a>
+        <a mat-list-item routerLink="/calculator" (click)="closeSidenav()"> <mat-icon matListItemIcon>calculate</mat-icon> Calculator </a>
+        <a mat-list-item routerLink="/registrationForm" (click)="closeSidenav()"> <mat-icon matListItemIcon>how_to_reg</mat-icon> Registration Form </a>
+        <a mat-list-item routerLink="/loginForm" (click)="closeSidenav()"> <mat-icon matListItemIcon>login</mat-icon> Login </a>
+        <a mat-list-item routerLink="/observables" (click)="closeSidenav()"> <mat-icon matListItemIcon>visibility</mat-icon> Observables </a>
+        <a mat-list-item routerLink="/to-do-list-fb" (click)="closeSidenav()"> <mat-icon matListItemIcon>task_alt</mat-icon> Firebase To-Do List </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app-sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
   <app-footer [buttonLabel]="buttonLabel" (buttonClicked)="handleFooterClick()"> </app-footer>
 </div>
-

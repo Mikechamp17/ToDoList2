@@ -1,0 +1,37 @@
+<div class="todo-app-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>My Standalone Firebase To-Do List</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="add-task-container">
+        <mat-form-field appearance="outline" class="task-input">
+          <mat-label>New Task</mat-label>
+          <input matInput [(ngModel)]="newTask.name" (keyup.enter)="addTask()" placeholder="What needs to be done?">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="date-input">
+          <mat-label>Due Date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="newTask.dueDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addTask()">Add Task</button>
+      </div>
+
+      <mat-list>
+        <div *ngFor="let task of tasks$ | async">
+          <mat-list-item [class.completed]="task.completed">
+            <mat-checkbox [checked]="task.completed" (change)="toggleCompletion(task)" class="task-checkbox"></mat-checkbox>
+            <span class="task-name">{{ task.name }}</span>
+            <span class="task-due-date" *ngIf="task.dueDate">{{ task.dueDate?.toDate() | date: 'shortDate' }}</span>
+            <span class="spacer"></span>
+            <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

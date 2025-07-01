@@ -1,12 +1,18 @@
 
 
-h1 {
-  height: 80px;
+
+.header-content {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  color: hsl(180, 100%, 65%);
-  background-color:rgb(39, 52, 195) ;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  gap: 10px; /* Space between message and icon */
+  color: white; /* Ensure text is visible on a primary toolbar */
+}
+
+.welcome-message {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+button[mat-icon-button] {
+  color: white;
 }

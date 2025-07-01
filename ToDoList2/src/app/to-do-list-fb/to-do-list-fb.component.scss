@@ -1,0 +1,48 @@
+.todo-app-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.add-task-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.task-input {
+  flex-grow: 1;
+}
+
+.date-input {
+  width: 150px;
+}
+
+mat-list-item {
+  &.completed {
+    .task-name,
+    .task-due-date {
+      text-decoration: line-through;
+      color: #aaa;
+    }
+  }
+}
+
+.task-checkbox {
+  margin-right: 1rem;
+}
+
+.task-name {
+  flex-grow: 1;
+}
+
+.task-due-date {
+  font-size: 0.85rem;
+  color: #666;
+  margin-right: 1rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

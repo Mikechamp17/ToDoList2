@@ -31,5 +31,11 @@ export const routes: Routes = [
         import('./observables/observables.component').then(m => m.ObservablesComponent),
     },
       
+    {
+      path : 'toDoListFb',
+      loadComponent: () =>
+        import('./to-do-list-fb/to-do-list-fb.component').then(m => m.ToDoListFbComponent),
+    },
+      
       
 ];
